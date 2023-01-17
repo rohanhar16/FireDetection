@@ -12,20 +12,26 @@ In this project Aurdino uno board has been used for obtaining the output. The ci
 ![image](https://user-images.githubusercontent.com/114398468/212620542-1d43ff3b-f32f-4c30-aea5-a2541f61e5ca.png)
 
 
+## Step by step guide
+
+- Open firedetection.ipynb file in the repository
+- In the file clone the repository of yolov5
+- Install the requirements.txt
+- Divide the dataset(given) into train set and validation set
+- Open dataset.yaml file change the directory of source data, train image directory, val image directory
+- Copy the file "dataset.yaml" into yolov5->data (yolov5 folder will be created after the cloning)
+- Training yolov5 with cuntom fire dataset, Batch: 7, number of epochs: 10, weights: yolov5s.pt
+- Testing the model with real time data using web cam. code: !python detect.py --source 0--weights .yolov5/runs/train/exp/weights/best.pt
 
 #### Install
 Clone this repo and use the following script to install [YOLOv5](https://github.com/ultralytics/yolov5). 
 ```
-# Clone
-git clone https://github.com/Stebin-17/FIRE-DETECTOR-USING-YOLOv5-AURDINO.git
-cd Yolov5-Fire-Detection
 
 # Install yolov5
 git clone https://github.com/ultralytics/yolov5  
 cd yolov5
 pip install -r requirements.txt
 ```
-
 
 #### Training
 Set up ```train.ipynb``` script for training the model from scratch. To train the model, download [Fire-Dataset](https://drive.google.com/file/d/1TQKA9nzo0BVwtmojmSusDt5j02KWzIu9/view?usp=sharing) and put it in ```datasets``` folder. This dataset contains samples from both [Fire & Smoke](https://www.kaggle.com/dataclusterlabs/fire-and-smoke-dataset) and [Fire & Guns](https://www.kaggle.com/atulyakumar98/fire-and-gun-dataset) datasets on Kaggle.
@@ -41,24 +47,6 @@ Or you can use the pretrained model located in ```models``` folder for detection
 ```
 python detect.py --source ../input.mp4 --weights ../models/best.pt --conf 0.2
 ```
-
-## Results
-The following charts were produced after training YOLOv5s with input size 640x640 on the fire dataset for 10 epochs.
-
-| P Curve | PR Curve | R Curve |
-| :-: | :-: | :-: |
-| ![](results/P_curve.png) | ![](results/PR_curve.png) | ![](results/R_curve.png) |
-
-#### Prediction Results
-The fire detection results were fairly good even though the model was trained only for a few epochs. However, I observed that the trained model tends to predict red emergency light on top of police car as fire. It might be due to the fact that the training dataset contains only a few hundreds of negative samples. We may fix such problem and further improve the performance of the model by adding images with non-labeled fire objects as negative samples. The [authors](https://github.com/ultralytics/yolov5/wiki/Tips-for-Best-Training-Results) who created YOLOv5 recommend using about 0-10% background images to help reduce false positives. 
-
-| Ground Truth | Prediction | 
-| :-: | :-: |
-| ![](results/val_batch2_labels_1.jpg) | ![](results/val_batch2_pred_1.jpg) |
-| ![](results/val_batch2_labels_2.jpg) | ![](results/val_batch2_pred_2.jpg) | 
-
-### REFERENCE:
-https://www.hackster.io/innovation4x/early-fire-detection-using-ai-dd27bf
 
 
 
