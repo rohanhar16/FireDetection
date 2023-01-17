@@ -1,0 +1,10 @@
+
+
+
+path: /home/christ-infotech-007/Rohan/FireDetection/dataset/data  # dataset root dir
+train: /home/christ-infotech-007/Rohan/FireDetection/dataset/images/train  # train images (relative to 'path')
+val: /home/christ-infotech-007/Rohan/FireDetection/dataset/images/val  # val images (relative to 'path')
+
+#class names
+names:
+  0: 'Fire'
